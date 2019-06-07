@@ -18,18 +18,15 @@ browser = webdriver.Chrome()
 browser.get(url)
 
 # wait for page to load
-#browser.implicitly_wait(10) # doesnt work
-time.sleep(3) # make sure page loads
+time.sleep(3)
 
 
-# hit more until you cannot anymore 
-count = 0 
+# hit more until you cannot anymore (remove 'more' after 20 uses)
 while True: # max number of pages they'll let you search
 	
 	try:
 		browser.find_element_by_css_selector('.more').click()
 		time.sleep(3) # wait for additional startups to load
-		#count = count + 1
 	except:
 		break
 
@@ -37,15 +34,14 @@ while True: # max number of pages they'll let you search
 html = browser.page_source
 soup = soup(html, 'html.parser')
 containers = soup.find_all("div", {"class":"base startup"})
-#print("Length after all pages loaded:", len(containers))
 
 # creating a csv file and writing the headers
 
-# make filename based on search filters
+# name file based on search filters
 filters = soup.find("div", {"class":"currently-showing"})
-filename = "angelList"
+filename = "angelList" # base of name
 
-for f in filters: # append each filter
+for f in filters: # append each filter to filename
 	filename = filename + "-" + f.text
 
 filename = filename + ".csv"

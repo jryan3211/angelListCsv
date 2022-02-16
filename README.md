@@ -1,4 +1,7 @@
 # angelListCsv
+
+NOTE: This script is outdated as the webpage has shifted. 
+
 uses Selenuim and BeautifulSoup to scrape info from Angel List's database of companies into your own csv file. 
 
 Takes a full url as input. Start at https://angel.co/companies , use any filters to narrow your search, and then paste the new url into the running script. 
